@@ -27,22 +27,22 @@ public class Building {
     void reset() {
         depth = (int)(Math.random() * maxDepth);
         rotation = applet.random(1);
-        height = minHeight + (float)Math.random() * (maxHeight - minHeight);
-        width = minWidth + (float)Math.random() * (maxWidth - minWidth);
-        position += applet.width + width * 2 + Math.random() * 50;
+        height = map(random(1), 0, 1, minHeight, maxHeight);
+        width = map(random(1), 0, 1, minWidth, maxWidth);
+        position += applet.width + width * 2 + random(50);
     }
 
     void draw(PApplet applet) {
         applet.stroke(255 / (maxDepth - depth));
         int base = applet.height;
 
-        float angle = applet.acos(rotation * 2 - 1);
-        float centre = applet.map(height, minHeight, maxHeight, viewMagnitude, -viewMagnitude);
+        float angle = acos(rotation * 2 - 1);
+        float centre = map(height, minHeight, maxHeight, viewMagnitude, -viewMagnitude);
 
         applet.beginShape();
         applet.texture(Poleis.texture);
         applet.vertex(position - (1 - rotation) * width, base - height, 0, Poleis.sunYPos);
-        applet.vertex(position, base - height + centre * applet.sin(angle), 0, Poleis.sunYPos);
+        applet.vertex(position, base - height + centre * sin(angle), 0, Poleis.sunYPos);
         applet.vertex(position + rotation * width, base - height, 0, Poleis.sunYPos);
         applet.vertex(position + rotation * width - (1 - rotation) * width, base - height - centre * applet.sin(angle), 0, Poleis.sunYPos);
         applet.endShape();
@@ -50,7 +50,7 @@ public class Building {
         applet.beginShape();
         applet.texture(Poleis.texture);
         applet.vertex(position, base, Poleis.sunXPos, Poleis.sunYPos);
-        applet.vertex(position, base - height + centre * applet.sin(angle), Poleis.sunXPos, 0);
+        applet.vertex(position, base - height + centre * sin(angle), Poleis.sunXPos, 0);
         applet.vertex(position + rotation * width, base - height, 0, Poleis.sunYPos);
         applet.vertex(position + rotation * width, base, 0, Poleis.sunYPos);
         applet.endShape();
@@ -58,7 +58,7 @@ public class Building {
         applet.beginShape();
         applet.texture(Poleis.texture);
         applet.vertex(position, base, Poleis.sunXPos, Poleis.sunYPos);
-        applet.vertex(position, base - height + centre * applet.sin(angle), Poleis.sunXPos, Poleis.sunYPos);
+        applet.vertex(position, base - height + centre * sin(angle), Poleis.sunXPos, Poleis.sunYPos);
         applet.vertex(position - (1 - rotation) * width, base - height, 0, Poleis.sunYPos);
         applet.vertex(position - (1 - rotation) * width, base, 0, Poleis.sunYPos);
         applet.endShape();
