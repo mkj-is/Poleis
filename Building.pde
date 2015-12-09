@@ -1,5 +1,4 @@
 import processing.core.PApplet;
-import processing.core.PShape;
 
 public class Building {
 
@@ -46,7 +45,7 @@ public class Building {
         applet.vertex(position, base - height + centre * applet.sin(angle), 0, Poleis.sunYPos);
         applet.vertex(position + rotation * width, base - height, 0, Poleis.sunYPos);
         applet.vertex(position + rotation * width - (1 - rotation) * width, base - height - centre * applet.sin(angle), 0, Poleis.sunYPos);
-        applet.endShape(PShape.CLOSE);
+        applet.endShape();
 
         applet.beginShape();
         applet.texture(Poleis.texture);
